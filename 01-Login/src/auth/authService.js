@@ -59,11 +59,7 @@ class AuthService extends EventEmitter {
   }
 
   isIdTokenValid() {
-    return (
-      this.idToken &&
-      this.tokenExpiry &&
-      Date.now() < this.tokenExpiry
-    );
+    return this.idToken && this.tokenExpiry && Date.now() < this.tokenExpiry;
   }
 
   getIdToken() {

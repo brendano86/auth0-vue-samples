@@ -4,13 +4,7 @@
     <div class="container mt-5">
       <router-view/>
     </div>
-    <footer>
-      <div class="logo"></div>
-      <p>
-        Sample project provided by
-        <a href="https://auth0.com">Auth0</a>
-      </p>
-    </footer>
+    <app-footer/>
   </div>
 </template>
 
@@ -20,10 +14,12 @@ import "samples-bootstrap-theme";
 import "samples-bootstrap-theme/dist/css/auth0-theme.css";
 
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    appFooter: Footer
   },
   async created() {
     try {
