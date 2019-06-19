@@ -26,7 +26,7 @@
               <button
                 id="qsLoginBtn"
                 class="btn btn-primary btn-margin"
-                @click.prevent="login"
+                @click.prevent="loginWithRedirect"
               >Login</button>
             </li>
 
@@ -52,13 +52,17 @@
           </ul>
 
           <ul class="navbar-nav d-md-none" v-if="!isAuthenticated">
-            <button class="btn btn-primary btn-block" @click="login">Log in</button>
+            <button class="btn btn-primary btn-block" @click="loginWithRedirect">Log in</button>
           </ul>
 
           <ul class="navbar-nav d-md-none" v-if="isAuthenticated">
             <li class="nav-item">
               <span class="user-info">
-                <img :src="profile.picture" alt="User's profile picture" class="nav-user-profile d-inline-block">
+                <img
+                  :src="profile.picture"
+                  alt="User's profile picture"
+                  class="nav-user-profile d-inline-block"
+                >
                 <h6 class="d-inline-block">{{ profile.name }}</h6>
               </span>
             </li>
@@ -79,26 +83,13 @@
 </template>
 
 <script>
+import { Auth0Mixin } from "../plugins/auth";
+
 export default {
+  mixins: [Auth0Mixin],
   name: "NavBar",
-  methods: {
-    login() {
-      this.$auth.login();
-    },
-    logout() {
-      this.$auth.logOut();
-      this.$router.push({ path: "/" });
-    },
-    handleLoginEvent(data) {
-      this.isAuthenticated = data.loggedIn;
-      this.profile = data.profile;
-    }
-  },
-  data() {
-    return {
-      isAuthenticated: false,
-      profile: {}
-    };
+  created() {
+    console.log(this);
   }
 };
 </script>

@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row align-items-center profile-header">
       <div class="col-md-2">
-        <img :src="profile.picture" alt="User's profile picture" class="rounded-circle img-fluid profile-picture">
+        <img
+          :src="profile.picture"
+          alt="User's profile picture"
+          class="rounded-circle img-fluid profile-picture"
+        >
       </div>
       <div class="col-md">
         <h2>{{ profile.name }}</h2>
@@ -17,16 +21,9 @@
 </template>
 
 <script>
+import { Auth0Mixin } from "../plugins/auth.js";
+
 export default {
-  data() {
-    return {
-      profile: this.$auth.profile
-    };
-  },
-  methods: {
-    handleLoginEvent(data) {
-      this.profile = data.profile;
-    }
-  }
+  mixins: [Auth0Mixin]
 };
 </script>
